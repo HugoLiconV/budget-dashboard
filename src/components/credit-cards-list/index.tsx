@@ -1,6 +1,12 @@
 import React from "react";
 import { useSwipeable } from "react-swipeable";
-import { CardDetails, CarouselContainer, CarouselSlot, Wrapper } from "./components";
+import { CardsResponse } from "../services/cards";
+import {
+  CardDetails,
+  CarouselContainer,
+  CarouselSlot,
+  Wrapper
+} from "./components";
 import CreditCard from "./credit-card";
 import { Direction, initialState, reducer } from "./reducer";
 
@@ -16,13 +22,11 @@ const getOrder = ({
   return index - pos < 0 ? numItems - Math.abs(index - pos) : index - pos;
 };
 
-const creditCards = [
-  { name: "Banamex Oro", amount: 922.87 },
-  { name: "Nu Bank", amount: 329.35 },
-  { name: "Santander", amount: 50.37 }
-];
+type CreditCardsListProps = {
+  creditCards: CardsResponse[];
+};
 
-const CreditCardsList: React.FC = () => {
+const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const numItems = creditCards.length;
   const selectedCard = getActiveCard();

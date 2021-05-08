@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import CreditCardsList from "./credit-cards-list";
-
+import { getDashboard, DashboardResponse } from "./services/dashboard";
+import Loader from "./icons/loader";
+import { formatCurrency } from "../utils/currency";
+import { useQuery } from "../hooks/useQuery";
+import { CardsResponse, getCards } from "./services/cards";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -57,29 +61,60 @@ const Card = styled.div`
 `;
 
 export default function Account() {
+  const {
+    status: dashboardDataStatus,
+    data: dashboardData
+  } = useQuery<DashboardResponse>(getDashboard);
+
+  const { status: cardsDataStatus, data: cards } = useQuery<CardsResponse[]>(
+    getCards
+  );
+
+  if (dashboardDataStatus === "loading") {
+    return (
+      <Container className="align-center">
+        <Loader color="#18191a" />
+      </Container>
+    );
+  }
+
   return (
     <Container>
-      <CreditCardsList />
+      {cardsDataStatus === "loading" ? (
+        <Loader />
+      ) : (
+        <CreditCardsList creditCards={cards || []} />
+      )}
       <GridContainer>
         <Card className="main-card">
           <span className="subtitle">Saldo general</span>
-          <span className="card-amount">$20,321.32</span>
+          <span className="card-amount">
+            {formatCurrency(dashboardData?.totalBalance ?? 0)}
+          </span>
         </Card>
         <Card>
           <span className="subtitle">Gastos esperados</span>
-          <span className="card-amount">$20,321.32</span>
+          <span className="card-amount">
+            {formatCurrency(dashboardData?.expectedExpenses ?? 0)}
+          </span>
         </Card>
         <Card>
           <span className="subtitle">Ingresos</span>
-          <span className="card-amount">$32,232.11</span>
+          <span className="card-amount">
+            {formatCurrency(dashboardData?.income ?? 0)}
+          </span>
         </Card>
         <Card>
           <span className="subtitle">Libre</span>
-          <span className="card-amount">$20,321.32</span>
+          <span className="card-amount">
+            {formatCurrency(dashboardData?.totalBalance ?? 0)}
+          </span>
         </Card>
         <Card>
           <span className="subtitle">Gastos</span>
-          <span className="card-amount">$32,232.11</span>
+          <span className="card-amount">
+            {formatCurrency(dashboardData?.currentExpenses ?? 0)}
+          </span>
         </Card>
       </GridContainer>
     </Container>

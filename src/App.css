@@ -19,3 +19,7 @@
 .justify-center {
   justify-items: center;
 }
+
+.align-center {
+  align-items: center;
+}

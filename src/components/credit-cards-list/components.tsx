@@ -40,7 +40,7 @@ export const CardDetails = styled.div`
     font-weight: 100;
   }
   .amount {
-    font-size: 2.25rem;
+    font-size: 1.5rem;
     font-weight: bold;
     margin-left: 0.5rem;
     color: var(--font-color);

@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+html {
+  background-color: #f3f3f3;
+}
+
 :root {
   --font-color: #18191a;
   --subtitle-color: #9caea9;

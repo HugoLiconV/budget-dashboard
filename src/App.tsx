@@ -3,7 +3,7 @@ import "./App.css";
 import Account from "./components/account";
 
 const Header = styled.h1`
-  padding: 32px;
+  padding: 32px 0 8px;
   text-align: center;
   color: var(--font-color);
 `;

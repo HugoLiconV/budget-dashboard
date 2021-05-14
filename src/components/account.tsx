@@ -8,7 +8,6 @@ import { CardsResponse, getCards } from "./services/cards";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 69px);
   .ml-8 {
     margin-left: 8px;
   }
@@ -34,7 +33,7 @@ const GridContainer = styled.div`
     font-size: 24px;
 
     .subtitle {
-      font-size: 16px;
+      font-size: 1.25rem;
     }
   }
 `;
@@ -57,6 +56,16 @@ const Card = styled.div`
   .card-amount {
     color: var(--font-color);
     font-weight: bold;
+  }
+  &.main-card {
+    /* margin: 0 16px 16px;
+    text-align: center;
+    .card-amount {
+      font-size: 2rem;
+    }
+    .subtitle {
+      font-size: 1.25rem;
+    } */
   }
 `;
 

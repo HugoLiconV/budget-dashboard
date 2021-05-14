@@ -19,7 +19,7 @@ export function useQuery<T>(fn: () => Promise<T>): UseQueryReturningValues<T> {
         setData(data);
       })
       .catch(() => setStatus("error"));
-  }, []);
+  }, [fn]);
 
   return { data, status };
 }

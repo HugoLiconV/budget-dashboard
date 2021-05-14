@@ -5,6 +5,7 @@ import Loader from "./icons/loader";
 import { formatCurrency } from "../utils/currency";
 import { useQuery } from "../hooks/useQuery";
 import { CardsResponse, getCards } from "./services/cards";
+import BlurredText from "./blurred-text";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -98,31 +99,31 @@ export default function Account() {
         <Card className="main-card">
           <span className="subtitle">Saldo general</span>
           <span className="card-amount">
-            {formatCurrency(dashboardData?.totalBalance ?? 0)}
+            <BlurredText text={formatCurrency(dashboardData?.totalBalance ?? 0)} />
           </span>
         </Card>
         <Card>
           <span className="subtitle">Gastos planeados</span>
           <span className="card-amount">
-            {formatCurrency(dashboardData?.expectedExpenses ?? 0)}
+            <BlurredText text={formatCurrency(dashboardData?.expectedExpenses ?? 0)}/>
           </span>
         </Card>
         <Card>
           <span className="subtitle">Ingresos</span>
           <span className="card-amount">
-            {formatCurrency(dashboardData?.income ?? 0)}
+            <BlurredText text={formatCurrency(dashboardData?.income ?? 0)} />
           </span>
         </Card>
         <Card>
           <span className="subtitle">Restante por pagar</span>
           <span className="card-amount">
-            {formatCurrency(dashboardData?.remainingExpenses ?? 0)}
+            <BlurredText text={formatCurrency(dashboardData?.remainingExpenses ?? 0)} />
           </span>
         </Card>
         <Card>
           <span className="subtitle">Gastos</span>
           <span className="card-amount">
-            {formatCurrency(dashboardData?.currentExpenses ?? 0)}
+            <BlurredText text={formatCurrency(dashboardData?.currentExpenses ?? 0)} />
           </span>
         </Card>
       </GridContainer>

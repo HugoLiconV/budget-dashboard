@@ -1,3 +1,4 @@
+import BlurredText from "components/blurred-text";
 import React from "react";
 import { useSwipeable } from "react-swipeable";
 import { formatCurrency } from "../../utils/currency";
@@ -75,7 +76,9 @@ const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
       <CardDetails>
         <p className="balance-label">{selectedCard?.account} balance:</p>
         <p>
-          <span className="amount">{formatCurrency(selectedCard?.balance)}</span>
+          <span className="amount">
+            <BlurredText text={formatCurrency(selectedCard?.balance)} />
+          </span>
         </p>
       </CardDetails>
     </>

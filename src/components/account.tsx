@@ -93,7 +93,7 @@ export default function Account() {
           </span>
         </Card>
         <Card>
-          <span className="subtitle">Gastos esperados</span>
+          <span className="subtitle">Gastos planeados</span>
           <span className="card-amount">
             {formatCurrency(dashboardData?.expectedExpenses ?? 0)}
           </span>
@@ -105,9 +105,9 @@ export default function Account() {
           </span>
         </Card>
         <Card>
-          <span className="subtitle">Libre</span>
+          <span className="subtitle">Restante por pagar</span>
           <span className="card-amount">
-            {formatCurrency(dashboardData?.totalBalance ?? 0)}
+            {formatCurrency(dashboardData?.remainingExpenses ?? 0)}
           </span>
         </Card>
         <Card>

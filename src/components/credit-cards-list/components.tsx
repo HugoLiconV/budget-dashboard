@@ -44,6 +44,11 @@ export const CardDetails = styled.div`
     font-weight: bold;
     margin-left: 0.5rem;
     color: var(--font-color);
+    &:first-letter {
+      color: var(--subtitle-color);
+      font-size: 2.25rem;
+      font-weight: 100;
+    }
   }
   .balance-label {
     color: var(--subtitle-color);

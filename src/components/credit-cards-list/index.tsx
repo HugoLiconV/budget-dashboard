@@ -1,5 +1,6 @@
 import React from "react";
 import { useSwipeable } from "react-swipeable";
+import { formatCurrency } from "../../utils/currency";
 import { CardsResponse } from "../services/cards";
 import {
   CardDetails,
@@ -64,7 +65,7 @@ const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
             >
               <CreditCard
                 isActive={(1 + state.pos) % creditCards.length === index}
-                name={creditCard.name}
+                name={creditCard.account}
                 className="child"
               />
             </CarouselSlot>
@@ -72,10 +73,9 @@ const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
         </CarouselContainer>
       </Wrapper>
       <CardDetails>
-        <p className="balance-label">{selectedCard.name} balance:</p>
+        <p className="balance-label">{selectedCard?.account} balance:</p>
         <p>
-          <span className="dolar-sign">$</span>
-          <span className="amount">{selectedCard.amount}</span>
+          <span className="amount">{formatCurrency(selectedCard?.balance)}</span>
         </p>
       </CardDetails>
     </>

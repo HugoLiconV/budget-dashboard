@@ -12,6 +12,10 @@ html {
   --subtitle-color: #9caea9;
 }
 
+.divider {
+  flex: 1;
+}
+
 .d-flex {
   display: flex;
 }

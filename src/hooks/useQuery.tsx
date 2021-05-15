@@ -7,14 +7,13 @@ interface UseQueryReturningValues<T> {
 
 export function useQuery<T>(fn: () => Promise<T>): UseQueryReturningValues<T> {
   const [data, setData] = React.useState<T>();
-  const [status, setStatus] = React.useState<"loading" | "error" | "iddle">(
-    "loading"
-  );
+  const [status, setStatus] =
+    React.useState<"loading" | "error" | "iddle">("loading");
 
   React.useEffect(() => {
     setStatus("loading");
     fn()
-      .then(data => {
+      .then((data) => {
         setStatus("iddle");
         setData(data);
       })

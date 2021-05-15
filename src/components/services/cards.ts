@@ -5,9 +5,7 @@ export type CardsResponse = {
   balance: number;
 };
 
-
 export async function getCards(): Promise<CardsResponse[]> {
-  const url = `${API_URL}/accounts`
-  return fetch(url)
-    .then(r => r.json())
+  const url = `${API_URL}/accounts`;
+  return fetch(url).then((r) => r.json());
 }

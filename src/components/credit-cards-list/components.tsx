@@ -13,8 +13,8 @@ type CarouselContainerProps = {
 
 export const CarouselContainer = styled.div<CarouselContainerProps>`
   display: flex;
-  transition: ${props => (props.sliding ? "none" : "transform 1s ease")};
-  transform: ${props => {
+  transition: ${(props) => (props.sliding ? "none" : "transform 1s ease")};
+  transform: ${(props) => {
     if (!props.sliding) return "translateX(calc(-80% - 20px))";
     if (props.dir === Direction.PREV)
       return "translateX(calc(2 * (-80% - 20px)))";
@@ -30,7 +30,7 @@ export const CarouselSlot = styled.div<CarouselSlotProps>`
   flex: 1 0 100%;
   flex-basis: 80%;
   margin-right: 20px;
-  order: ${props => props.order};
+  order: ${(props) => props.order};
 `;
 
 export const CardDetails = styled.div`

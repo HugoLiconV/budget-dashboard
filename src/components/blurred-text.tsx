@@ -7,7 +7,7 @@ type Props = {
 
 const BlurredText: React.FC<Props> = ({ text }: Props) => {
   const { hideAmounts } = useSettingsContext();
-  const regex = /./gi;
+  const regex = /\d/gi;
   return <>{hideAmounts ? text.replace(regex, "*") : text}</>;
 };
 

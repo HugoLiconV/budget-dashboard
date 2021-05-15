@@ -16,17 +16,23 @@ const Navbar = styled.div`
   justify-content: space-between;
   align-items: baseline;
   padding: 0 16px;
-`
+`;
 
 function App() {
-  const [hideAmounts, setHideAmounts] = React.useState(false)
+  const [hideAmounts, setHideAmounts] = React.useState(false);
 
-  const toggleHideAmounts = React.useCallback(() => setHideAmounts(v => !v), [])
+  const toggleHideAmounts = React.useCallback(
+    () => setHideAmounts((v) => !v),
+    []
+  );
 
   return (
-    <SettingsContext.Provider value={{
-      hideAmounts, toggleHideAmounts
-    }}>
+    <SettingsContext.Provider
+      value={{
+        hideAmounts,
+        toggleHideAmounts,
+      }}
+    >
       <div className="App">
         <Navbar>
           <div />

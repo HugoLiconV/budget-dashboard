@@ -25,7 +25,7 @@ export default function Loader({ color, className, style }: LoaderProps) {
             styles["inner-arc"],
             styles["inner-arc_start-a"]
           )}
-          style={{ borderColor: 'color' }}
+          style={{ borderColor: "color" }}
         ></div>
         <div
           className={classNames(styles["inner-arc"], styles["inner-arc_end-a"])}
@@ -93,11 +93,11 @@ Loader.propTypes = {
   /** class name  */
   className: PropTypes.string,
   /** style object */
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 Loader.defaultProps = {
   color: "#7f58af",
   className: "",
-  style: {}
+  style: {},
 };

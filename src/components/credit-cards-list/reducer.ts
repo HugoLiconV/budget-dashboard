@@ -1,6 +1,6 @@
 export enum Direction {
   NEXT = "NEXT",
-  PREV = "PREV"
+  PREV = "PREV",
 }
 
 type Action = {
@@ -17,14 +17,14 @@ export function reducer(state: CardReducerState, { type, numItems }: Action) {
         ...state,
         dir: Direction.PREV,
         sliding: true,
-        pos: state.pos === 0 ? (numItems || 0) - 1 : state.pos - 1
+        pos: state.pos === 0 ? (numItems || 0) - 1 : state.pos - 1,
       };
     case Direction.NEXT:
       return {
         ...state,
         dir: Direction.NEXT,
         sliding: true,
-        pos: state.pos === (numItems || 0) - 1 ? 0 : state.pos + 1
+        pos: state.pos === (numItems || 0) - 1 ? 0 : state.pos + 1,
       };
     case "stopSliding":
       return { ...state, sliding: false };
@@ -42,5 +42,5 @@ export type CardReducerState = {
 export const initialState: CardReducerState = {
   pos: 0,
   sliding: false,
-  dir: Direction.NEXT
+  dir: Direction.NEXT,
 };

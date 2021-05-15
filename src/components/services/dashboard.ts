@@ -9,7 +9,6 @@ export type DashboardResponse = {
 };
 
 export async function getDashboard(): Promise<DashboardResponse> {
-  const url = `${API_URL}/dashboard`
-  return fetch(url)
-    .then(r => r.json())
+  const url = `${API_URL}/dashboard`;
+  return fetch(url).then((r) => r.json());
 }

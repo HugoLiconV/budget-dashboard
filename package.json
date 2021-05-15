@@ -45,6 +45,8 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.9"
+    "@types/styled-components": "^5.1.9",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "2.3.0"
   }
 }

@@ -71,14 +71,11 @@ const Card = styled.div`
 `;
 
 export default function Account() {
-  const {
-    status: dashboardDataStatus,
-    data: dashboardData
-  } = useQuery<DashboardResponse>(getDashboard);
+  const { status: dashboardDataStatus, data: dashboardData } =
+    useQuery<DashboardResponse>(getDashboard);
 
-  const { status: cardsDataStatus, data: cards } = useQuery<CardsResponse[]>(
-    getCards
-  );
+  const { status: cardsDataStatus, data: cards } =
+    useQuery<CardsResponse[]>(getCards);
 
   if (dashboardDataStatus === "loading") {
     return (
@@ -99,13 +96,17 @@ export default function Account() {
         <Card className="main-card">
           <span className="subtitle">Saldo general</span>
           <span className="card-amount">
-            <BlurredText text={formatCurrency(dashboardData?.totalBalance ?? 0)} />
+            <BlurredText
+              text={formatCurrency(dashboardData?.totalBalance ?? 0)}
+            />
           </span>
         </Card>
         <Card>
           <span className="subtitle">Gastos planeados</span>
           <span className="card-amount">
-            <BlurredText text={formatCurrency(dashboardData?.expectedExpenses ?? 0)}/>
+            <BlurredText
+              text={formatCurrency(dashboardData?.expectedExpenses ?? 0)}
+            />
           </span>
         </Card>
         <Card>
@@ -117,13 +118,17 @@ export default function Account() {
         <Card>
           <span className="subtitle">Restante por pagar</span>
           <span className="card-amount">
-            <BlurredText text={formatCurrency(dashboardData?.remainingExpenses ?? 0)} />
+            <BlurredText
+              text={formatCurrency(dashboardData?.remainingExpenses ?? 0)}
+            />
           </span>
         </Card>
         <Card>
           <span className="subtitle">Gastos</span>
           <span className="card-amount">
-            <BlurredText text={formatCurrency(dashboardData?.currentExpenses ?? 0)} />
+            <BlurredText
+              text={formatCurrency(dashboardData?.currentExpenses ?? 0)}
+            />
           </span>
         </Card>
       </GridContainer>

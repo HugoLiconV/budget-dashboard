@@ -1,8 +1,7 @@
-import { useSettingsContext } from 'context/settings-context';
-import React from 'react';
-import styled from 'styled-components';
-import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
-
+import { useSettingsContext } from "context/settings-context";
+import React from "react";
+import styled from "styled-components";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 const Button = styled.button`
   outline: none;
@@ -14,14 +13,14 @@ const Button = styled.button`
   @keyframes active {
     0% {
       /* display: none;  */
-      opacity: 0;  
+      opacity: 0;
     }
     99% {
       opacity: 1;
     }
     100% {
       display: block;
-    } 
+    }
   }
 
   @keyframes inactive {
@@ -34,7 +33,7 @@ const Button = styled.button`
     }
     100% {
       /* display: none;  */
-    } 
+    }
   }
 
   .active {
@@ -45,7 +44,7 @@ const Button = styled.button`
     animation-name: active;
     animation-duration: 4s;
   }
-`
+`;
 
 const FillEye = styled(AiFillEye)`
   /* font-size: 20px; */
@@ -57,21 +56,20 @@ const FillEye = styled(AiFillEye)`
   &.inactive {
     visibility: hidden; */
   /* } */
-`
+`;
 const FillEyeInvisible = styled(AiFillEyeInvisible)`
   /* font-size: 20px; */
   /* transition: all 0.5s ease-out; */
-
-`
+`;
 
 const HideAmountsToggle: React.FC = () => {
   const { hideAmounts, toggleHideAmounts } = useSettingsContext();
-  const className = hideAmounts ? 'active' : 'inactive';
+  const className = hideAmounts ? "active" : "inactive";
 
   return (
     <Button onClick={toggleHideAmounts}>
-      <FillEye className={`${hideAmounts ? 'active' : 'inactive'}`} />
-      <FillEyeInvisible className={`${!hideAmounts ? 'active' : 'inactive'}`} />
+      <FillEye className={`${hideAmounts ? "active" : "inactive"}`} />
+      <FillEyeInvisible className={`${!hideAmounts ? "active" : "inactive"}`} />
     </Button>
   );
 };

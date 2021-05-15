@@ -1,19 +1,21 @@
-import React from 'react';
+import React from "react";
 
 export type SettingsContextType = {
-  hideAmounts: boolean
+  hideAmounts: boolean;
   toggleHideAmounts: () => void;
-}
+};
 
 export const SettingsContext = React.createContext<SettingsContextType>({
   hideAmounts: false,
-  toggleHideAmounts: () => { }
+  toggleHideAmounts: () => {},
 });
 
 export const useSettingsContext = () => {
-  const context = React.useContext(SettingsContext)
+  const context = React.useContext(SettingsContext);
   if (context === undefined) {
-    throw new Error('useSettingsContext must be used within a SettingsProvider')
+    throw new Error(
+      "useSettingsContext must be used within a SettingsProvider"
+    );
   }
-  return context
-}
+  return context;
+};

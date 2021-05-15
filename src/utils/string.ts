@@ -3,7 +3,7 @@ type SpliceParams = {
   start: number;
   delCount: number;
   newSubStr: string;
-}
+};
 
 /**
  * {JSDoc}
@@ -17,6 +17,7 @@ type SpliceParams = {
  * @return {string} A new string with the spliced substring.
  */
 export function splice({ value, start, delCount, newSubStr }: SpliceParams) {
-  return value.slice(0, start) + newSubStr + value.slice(start + Math.abs(delCount));
-};
-
+  return (
+    value.slice(0, start) + newSubStr + value.slice(start + Math.abs(delCount))
+  );
+}

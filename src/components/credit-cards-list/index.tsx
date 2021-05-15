@@ -7,7 +7,7 @@ import {
   CardDetails,
   CarouselContainer,
   CarouselSlot,
-  Wrapper
+  Wrapper,
 } from "./components";
 import CreditCard from "./credit-card";
 import { Direction, initialState, reducer } from "./reducer";
@@ -15,7 +15,7 @@ import { Direction, initialState, reducer } from "./reducer";
 const getOrder = ({
   index,
   pos,
-  numItems
+  numItems,
 }: {
   index: number;
   pos: number;
@@ -43,7 +43,7 @@ const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
   const handlers = useSwipeable({
     onSwipedLeft: () => slide(Direction.NEXT),
     onSwipedRight: () => slide(Direction.PREV),
-    preventDefaultTouchmoveEvent: true
+    preventDefaultTouchmoveEvent: true,
   });
 
   function getActiveCard() {
@@ -61,7 +61,7 @@ const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
               order={getOrder({
                 index: index,
                 pos: state.pos,
-                numItems
+                numItems,
               })}
             >
               <CreditCard

@@ -2,14 +2,16 @@
   margin: 0;
   padding: 0;
 }
-
-html {
-  background-color: #f3f3f3;
+:root {
+  --font-color: white;
+  --subtitle-color: #9caea9;
+  --background-color: #12141d;
+  /* --font-color: #18191a; */
+  /* --background-color: ##f3f3f3; */
 }
 
-:root {
-  --font-color: #18191a;
-  --subtitle-color: #9caea9;
+html {
+  background-color: var(--background-color);
 }
 
 .divider {

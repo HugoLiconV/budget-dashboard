@@ -40,9 +40,9 @@ const GridContainer = styled.div`
 `;
 
 const Card = styled.div`
-  color: #38302e;
-  background: linear-gradient(to right bottom, #ffffff, #fbfbfb);
-  box-shadow: 0 16px 24px 0 rgb(118 143 255 / 10%);
+  /* background: linear-gradient(to right bottom, #ffffff, #fbfbfb); */
+  background: hsla(0, 0%, 100%, 0.05);
+  /* box-shadow: 0 16px 24px 0 rgb(118 143 255 / 10%); */
 
   padding: 16px 8px;
   border-radius: 16px;
@@ -74,24 +74,19 @@ export default function Account() {
   const { status: dashboardDataStatus, data: dashboardData } =
     useQuery<DashboardResponse>(getDashboard);
 
-  const { status: cardsDataStatus, data: cards } =
-    useQuery<CardsResponse[]>(getCards);
+  const { data: cards } = useQuery<CardsResponse[]>(getCards);
 
   if (dashboardDataStatus === "loading") {
     return (
       <Container className="align-center">
-        <Loader color="#18191a" />
+        <Loader color="#FFF" />
       </Container>
     );
   }
 
   return (
     <Container>
-      {cardsDataStatus === "loading" ? (
-        <Loader />
-      ) : (
-        <CreditCardsList creditCards={cards || []} />
-      )}
+      <CreditCardsList creditCards={cards || []} />
       <GridContainer>
         <Card className="main-card">
           <span className="subtitle">Saldo general</span>

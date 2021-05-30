@@ -6,8 +6,14 @@
   --font-color: white;
   --subtitle-color: #9caea9;
   --background-color: #12141d;
-  /* --font-color: #18191a; */
-  /* --background-color: ##f3f3f3; */
+  --rsbs-bg: #262626;
+  --rsbs-handle-bg: gray;
+  --rsbs-backdrop-bg: rgba(0, 0, 0, 0.65);
+}
+
+[data-rsbs-header] {
+  box-shadow: 0 1px 0
+    rgba(255, 255, 255, calc(var(--rsbs-content-opacity, 1) * 0.125)) !important;
 }
 
 html {

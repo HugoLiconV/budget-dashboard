@@ -6,127 +6,72 @@ import { formatCurrency } from "../utils/currency";
 import { useQuery } from "../hooks/useQuery";
 import { CardsResponse, getCards } from "./services/cards";
 import BlurredText from "./blurred-text";
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  .ml-8 {
-    margin-left: 8px;
-  }
-`;
 
-const GridContainer = styled.div`
-  height: fit-content;
-  color: white;
-  padding: 32px 16px;
-  border-top-left-radius: 32px;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 24px 8px;
-  span {
-    text-align: center;
-  }
-  .main-card {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    font-size: 24px;
-
-    .subtitle {
-      font-size: 1.25rem;
-    }
-  }
-`;
-
-const Card = styled.div`
-  /* background: linear-gradient(to right bottom, #ffffff, #fbfbfb); */
-  background: hsla(0, 0%, 100%, 0.05);
-  /* box-shadow: 0 16px 24px 0 rgb(118 143 255 / 10%); */
-
-  padding: 16px 8px;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-
-  .subtitle {
-    color: var(--subtitle-color);
-    font-size: 12px;
-    margin-bottom: 8px;
-  }
-  .card-amount {
-    color: var(--font-color);
-    font-weight: bold;
-  }
-  &.main-card {
-    /* margin: 0 16px 16px;
-    text-align: center;
-    .card-amount {
-      font-size: 2rem;
-    }
-    .subtitle {
-      font-size: 1.25rem;
-    } */
-  }
-`;
+const Card = styled.div``;
 
 export default function Account() {
   const { status: dashboardDataStatus, data: dashboardData } =
     useQuery<DashboardResponse>(getDashboard);
 
   const { data: cards } = useQuery<CardsResponse[]>(getCards);
-
-  if (dashboardDataStatus === "loading") {
-    return (
-      <Container className="align-center">
-        <Loader color="#FFF" />
-      </Container>
-    );
-  }
+  const cardClassName =
+    "bg-gray-800 flex flex-col py-4 px-2 rounded-2xl via-pink-500 to-red-500";
+  const mainCardClassName =
+    cardClassName + " col-start-1 col-end-3 row-start-1 row-end-2";
 
   return (
-    <Container>
+    <div className="flex flex-col">
       <CreditCardsList creditCards={cards || []} />
-      <GridContainer>
-        <Card className="main-card">
-          <span className="subtitle">Saldo general</span>
-          <span className="card-amount">
+      <div className="text-white py-8 p-4 grid grid-cols-2 gap-y-6 gap-x-2">
+        <Card className={mainCardClassName}>
+          <span className=" text-gray-300 mb-2 text-center text-base">
+            Saldo general
+          </span>
+          <span className="text-white font-bold text-center text-2xl">
             <BlurredText
               text={formatCurrency(dashboardData?.totalBalance ?? 0)}
             />
           </span>
         </Card>
-        <Card>
-          <span className="subtitle">Gastos planeados</span>
-          <span className="card-amount">
+        <Card className={cardClassName}>
+          <span className=" text-gray-300 mb-2 text-xs text-center">
+            Gastos planeados
+          </span>
+          <span className="text-white font-bold text-center">
             <BlurredText
               text={formatCurrency(dashboardData?.expectedExpenses ?? 0)}
             />
           </span>
         </Card>
-        <Card>
-          <span className="subtitle">Ingresos</span>
-          <span className="card-amount">
+        <Card className={cardClassName}>
+          <span className=" text-gray-300 mb-2 text-xs text-center">
+            Ingresos
+          </span>
+          <span className="text-white font-bold text-center">
             <BlurredText text={formatCurrency(dashboardData?.income ?? 0)} />
           </span>
         </Card>
-        <Card>
-          <span className="subtitle">Restante por pagar</span>
-          <span className="card-amount">
+        <Card className={cardClassName}>
+          <span className=" text-gray-300 mb-2 text-xs text-center">
+            Restante por pagar
+          </span>
+          <span className="text-white font-bold text-center">
             <BlurredText
               text={formatCurrency(dashboardData?.remainingExpenses ?? 0)}
             />
           </span>
         </Card>
-        <Card>
-          <span className="subtitle">Gastos</span>
-          <span className="card-amount">
+        <Card className={cardClassName}>
+          <span className=" text-gray-300 mb-2 text-xs text-center">
+            Gastos
+          </span>
+          <span className="text-white font-bold text-center">
             <BlurredText
               text={formatCurrency(dashboardData?.currentExpenses ?? 0)}
             />
           </span>
         </Card>
-      </GridContainer>
-    </Container>
+      </div>
+    </div>
   );
 }

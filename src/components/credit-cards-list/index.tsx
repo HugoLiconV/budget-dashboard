@@ -1,5 +1,6 @@
 import BlurredText from "components/blurred-text";
-import React from "react";
+import CardsBottomSheet from "components/cards-bottom-sheet";
+import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { formatCurrency } from "../../utils/currency";
 import { CardsResponse } from "../services/cards";
@@ -32,6 +33,10 @@ const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const numItems = creditCards.length;
   const selectedCard = getActiveCard();
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+
+  const openDetails = () => setIsDetailsOpen(true);
+  const closeDetails = () => setIsDetailsOpen(false);
 
   const slide = (dir: Direction) => {
     dispatch({ type: dir, numItems });
@@ -43,6 +48,8 @@ const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
   const handlers = useSwipeable({
     onSwipedLeft: () => slide(Direction.NEXT),
     onSwipedRight: () => slide(Direction.PREV),
+    onTap: openDetails,
+
     preventDefaultTouchmoveEvent: true,
   });
 
@@ -81,6 +88,11 @@ const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
           </span>
         </p>
       </CardDetails>
+      <CardsBottomSheet
+        creditCards={creditCards}
+        isOpen={isDetailsOpen}
+        onDismiss={closeDetails}
+      />
     </>
   );
 };

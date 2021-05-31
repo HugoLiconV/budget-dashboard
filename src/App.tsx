@@ -1,28 +1,20 @@
-import Navbar from "components/navbar";
-import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import Loader from "components/icons/loader";
+import AuthenticatedApp from "pages/authenticated-app";
+import UnauthenticatedApp from "pages/unauthenticated-app";
 import "./App.css";
-import Account from "./components/account";
-import { SettingsContext } from "./context/settings-context";
 
 function App() {
-  const [hideAmounts, setHideAmounts] = React.useState(false);
+  const { isLoading, isAuthenticated } = useAuth0();
 
-  const toggleHideAmounts = React.useCallback(
-    () => setHideAmounts((v) => !v),
-    []
-  );
+  if (isLoading) {
+    return (
+      <div className="w-full flex justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
-  return (
-    <SettingsContext.Provider
-      value={{
-        hideAmounts,
-        toggleHideAmounts,
-      }}
-    >
-      <Navbar />
-      <Account />
-    </SettingsContext.Provider>
-  );
+  return isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 }
-
 export default App;

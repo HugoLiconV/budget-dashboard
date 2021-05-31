@@ -3,7 +3,7 @@ import CardsBottomSheet from "components/cards-bottom-sheet";
 import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { formatCurrency } from "../../utils/currency";
-import { CardsResponse } from "../services/cards";
+import { CardsResponse } from "../../services/accounts";
 import {
   CardDetails,
   CarouselContainer,

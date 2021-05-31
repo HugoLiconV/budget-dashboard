@@ -2,7 +2,7 @@ import React from "react";
 import { BottomSheet } from "react-spring-bottom-sheet";
 import styled from "styled-components";
 import Button from "atomic/button";
-import { CardsResponse } from "./services/cards";
+import { CardsResponse } from "../services/accounts";
 import BlurredText from "./blurred-text";
 import { formatCurrency } from "utils/currency";
 import "react-spring-bottom-sheet/dist/style.css";

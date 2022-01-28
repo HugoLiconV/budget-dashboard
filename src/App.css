@@ -3,12 +3,37 @@
   padding: 0;
 }
 :root {
-  --font-color: white;
+  --font-color: #2b3674;
   --subtitle-color: #9caea9;
-  --background-color: #12141d;
+  --background-color: #f4f7fe;
   --rsbs-bg: #262626;
   --rsbs-handle-bg: gray;
   --rsbs-backdrop-bg: rgba(0, 0, 0, 0.65);
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
 }
 
 [data-rsbs-header] {
@@ -19,6 +44,14 @@
 html {
   background-color: var(--background-color);
   color: var(--font-color);
+}
+
+h1 {
+  font-size: 34px;
+  line-height: 42px;
+  letter-spacing: -2%;
+  font-weight: 700;
+  margin-bottom: 32px; 
 }
 
 .divider {

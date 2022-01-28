@@ -8,10 +8,7 @@ export type DashboardResponse = {
   remainingExpenses: number;
 };
 
-export async function getDashboard(token: string): Promise<DashboardResponse> {
-  return get("/dashboard", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export async function getDashboard(): Promise<DashboardResponse> {
+  const response = await get<DashboardResponse>("/dashboard");
+  return response.data;
 }

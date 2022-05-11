@@ -1,7 +1,8 @@
+import classNames from "classnames";
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div<{ completed: number }>`
+const Container = styled.div<{ completed: number; isOverflow: boolean }>`
   .labels-container {
     display: flex;
     justify-content: space-between;
@@ -20,7 +21,6 @@ const Container = styled.div<{ completed: number }>`
     .fill {
       height: 100%;
       width: ${(p) => p.completed}%;
-      background-color: #4318ff;
       transition: width 1s ease-in-out;
       border-radius: inherit;
       text-align: right;
@@ -37,12 +37,27 @@ type Props = {
 };
 
 const ProgressBar = ({ max, value, min, className, formater }: Props) => {
-  const completed = (value * 100) / max;
+  const completed = Math.min((value * 100) / max, 100);
+  const isOverflow = value > max;
+
+  const overflowBackground =
+    "bg-gradient-to-r from-red-300 via-red-400 to-red-500";
+  const background =
+    "bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-600";
 
   return (
-    <Container completed={completed} className={className}>
+    <Container
+      completed={completed}
+      className={className}
+      isOverflow={isOverflow}
+    >
       <div className="progress-bar-container">
-        <div className="fill"></div>
+        <div
+          className={classNames("fill", {
+            [overflowBackground]: isOverflow,
+            [background]: !isOverflow,
+          })}
+        ></div>
       </div>
       <div className="labels-container">
         <span className="min">{formater ? formater(min) : min}</span>

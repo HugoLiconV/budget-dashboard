@@ -21,16 +21,16 @@ const StyledHome = styled.div`
 const Home: React.FC<HomeProps> = () => {
   const {
     data: dashboard,
-    isFetching: isDashboardLoading,
+    isLoading: isDashboardLoading,
     refetch: refetchDashboard,
   } = useQuery("home.dashboard", getDashboard);
   const {
-    isFetching: areRecordsLoading,
+    isLoading: areRecordsLoading,
     data: records,
     refetch: refetchRecords,
   } = useQuery("home.records", () => fetchRecords({ limit: 3 }));
   const {
-    isFetching: isDailyExpensesLoading,
+    isLoading: isDailyExpensesLoading,
     data: dailyExpenses,
     refetch: refetchDailyExpenses,
   } = useQuery("home.daily-expenses", () => fetchDailyExpenses());

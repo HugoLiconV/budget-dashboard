@@ -63,7 +63,12 @@ const DropdownList = styled.ul<{ isOpen: boolean }>`
   }
 `;
 
+const HiddenInput = styled.input`
+  display: none;
+`;
+
 type Props = {
+  name?: string;
   selectedItem: Option | undefined | null;
   options: Option[];
   onClearSelectedItem: () => void;
@@ -83,6 +88,7 @@ export default function Select({
   label,
   placeholder,
   disabled,
+  name,
 }: Props) {
   const {
     isOpen,
@@ -122,6 +128,12 @@ export default function Select({
     <StyledSelect>
       <Manager>
         <label {...getLabelProps()}>{label}</label>
+        <HiddenInput
+          type="text"
+          name={name}
+          value={selectedItem?.value}
+          readOnly
+        />
         <Reference>
           {({ ref }) => (
             <div className="toggle-container" ref={ref}>
@@ -163,7 +175,6 @@ export default function Select({
             </div>
           )}
         </Popper>
-        <div tabIndex={0} />
       </Manager>
     </StyledSelect>
   );

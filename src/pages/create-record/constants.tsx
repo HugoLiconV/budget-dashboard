@@ -159,8 +159,8 @@ export const categories: Category[] = [
         value: "Estacionamientos",
       },
       {
-        name: "Mantenimienot de vehículos",
-        value: "Mantenimienot de vehículos",
+        name: "Mantenimiento de vehículos",
+        value: "Mantenimiento de vehículos",
       },
       {
         name: "Seguro de vehículos",
@@ -249,6 +249,14 @@ export const categories: Category[] = [
         name: "Venta",
         value: "Venta",
       },
+      {
+        name: "Reembolsos",
+        value: "Reembolsos",
+      },
+      {
+        name: "Prestamos, intereses",
+        value: "Prestamos, intereses",
+      },
     ],
   },
 ];
@@ -295,6 +303,10 @@ export const accounts: Option[] = [
   {
     name: "HSBC 2Now",
     value: "HSBC 2Now",
+  },
+  {
+    name: "Banamex Priority",
+    value: "Banamex Priority",
   },
 ];
 

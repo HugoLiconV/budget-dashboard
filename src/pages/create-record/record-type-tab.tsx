@@ -5,6 +5,7 @@ import styled from "styled-components";
 export enum RecordType {
   Expense = "Expense",
   Income = "Income",
+  Transfer = "Transfer",
 }
 
 type RecordTypeTabProps = {
@@ -24,6 +25,10 @@ const StyledRecordTypeTab = styled.div`
   button.selected {
     background-color: #4318ff;
     color: #fff;
+  }
+  & :not(:last-child, :first-child) {
+    border-left: 1px solid #4318ff;
+    border-right: 1px solid #4318ff;
   }
 `;
 
@@ -54,6 +59,17 @@ const RecordTypeTab: React.FC<RecordTypeTabProps> = ({
         }}
       >
         Income
+      </button>
+      <button
+        className={classNames("w-full py-1", {
+          selected: selectedTab === RecordType.Transfer,
+        })}
+        type="button"
+        onClick={(e) => {
+          onTabClick(RecordType.Transfer);
+        }}
+      >
+        Transfer
       </button>
     </StyledRecordTypeTab>
   );

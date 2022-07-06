@@ -41,6 +41,29 @@ export async function createRecord({
   );
 }
 
+export type Transfer = {
+  name: string;
+  amount: number;
+  fromAccount: string;
+  toAccount: string;
+  date: string;
+  label?: string;
+};
+
+export async function createTransfer({ transfer }: { transfer: Transfer }) {
+  const { name, date, ...rest } = transfer;
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  headers.append("Accept", "application/json");
+  return post(
+    "/records/transfers",
+    { ...rest, record: name, formatedDate: date },
+    {
+      headers,
+    }
+  );
+}
+
 type fetchRecordsParams = {
   limit?: number;
 };

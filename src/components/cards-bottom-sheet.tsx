@@ -2,7 +2,7 @@ import React from "react";
 import { BottomSheet } from "react-spring-bottom-sheet";
 import styled from "styled-components";
 import Button from "atomic/button";
-import { CardsResponse } from "../services/accounts";
+// import { CardsResponse } from "../services/accounts";
 import BlurredText from "./blurred-text";
 import { formatCurrency } from "utils/currency";
 import "react-spring-bottom-sheet/dist/style.css";
@@ -14,13 +14,13 @@ const Container = styled.div`
 type Props = {
   isOpen: boolean;
   onDismiss: () => void;
-  creditCards: CardsResponse[];
+  // creditCards: CardsResponse[];
 };
 
 const CardsBottomSheet: React.FC<Props> = ({
   isOpen,
   onDismiss,
-  creditCards,
+  // creditCards,
 }: Props) => {
   const className =
     "rounded-lg bg-gray-500 text-white text-lg p-2 py-3 flex justify-between items-center mb-2";
@@ -39,14 +39,14 @@ const CardsBottomSheet: React.FC<Props> = ({
         footer={<Button onClick={onDismiss}>Done</Button>}
       >
         <div className="p-2 pt-4">
-          {creditCards.map((card) => (
+          {/* {creditCards.map((card) => (
             <p key={card.account} className={className}>
               <span>{card.account}</span>{" "}
               <span>
                 <BlurredText text={formatCurrency(card?.balance)} />
               </span>
             </p>
-          ))}
+          ))} */}
         </div>
       </BottomSheet>
     </Container>

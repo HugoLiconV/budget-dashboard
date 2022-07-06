@@ -1,4 +1,4 @@
-export function formatCurrency(value: number): string {
+export function formatCurrency(value?: number): string {
   const formatter = new Intl.NumberFormat("es-mx", {
     style: "currency",
     currency: "MXN",

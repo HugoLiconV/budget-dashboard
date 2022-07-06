@@ -3,7 +3,7 @@ import CardsBottomSheet from "components/cards-bottom-sheet";
 import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { formatCurrency } from "../../utils/currency";
-import { CardsResponse } from "../../services/accounts";
+// import { CardsResponse } from "../../services/accounts";
 import {
   CardDetails,
   CarouselContainer,
@@ -26,41 +26,41 @@ const getOrder = ({
 };
 
 type CreditCardsListProps = {
-  creditCards: CardsResponse[];
+  // creditCards: CardsResponse[];
 };
 
-const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
+const CreditCardsList = ({}: CreditCardsListProps) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  const numItems = creditCards.length;
-  const selectedCard = getActiveCard();
+  // const numItems = creditCards.length;
+  // const selectedCard = getActiveCard();
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   const openDetails = () => setIsDetailsOpen(true);
   const closeDetails = () => setIsDetailsOpen(false);
 
-  const slide = (dir: Direction) => {
-    dispatch({ type: dir, numItems });
-    setTimeout(() => {
-      dispatch({ type: "stopSliding" });
-    }, 50);
-  };
+  // const slide = (dir: Direction) => {
+  //   dispatch({ type: dir, numItems });
+  //   setTimeout(() => {
+  //     dispatch({ type: "stopSliding" });
+  //   }, 50);
+  // };
 
-  const handlers = useSwipeable({
-    onSwipedLeft: () => slide(Direction.NEXT),
-    onSwipedRight: () => slide(Direction.PREV),
-    onTap: openDetails,
+  // const handlers = useSwipeable({
+  //   onSwipedLeft: () => slide(Direction.NEXT),
+  //   onSwipedRight: () => slide(Direction.PREV),
+  //   onTap: openDetails,
 
-    preventDefaultTouchmoveEvent: true,
-  });
+  //   preventDefaultTouchmoveEvent: true,
+  // });
 
-  function getActiveCard() {
-    const index = (1 + state.pos) % creditCards.length;
-    return creditCards[index];
-  }
+  // function getActiveCard() {
+  //   const index = (1 + state.pos) % creditCards.length;
+  //   return creditCards[index];
+  // }
 
   return (
     <>
-      <Wrapper {...handlers}>
+      {/* <Wrapper {...handlers}>
         <CarouselContainer dir={state.dir} sliding={state.sliding}>
           {creditCards.map((creditCard, index) => (
             <CarouselSlot
@@ -87,12 +87,12 @@ const CreditCardsList = ({ creditCards }: CreditCardsListProps) => {
             <BlurredText text={formatCurrency(selectedCard?.balance)} />
           </span>
         </p>
-      </CardDetails>
-      <CardsBottomSheet
+      </CardDetails> */}
+      {/* <CardsBottomSheet
         creditCards={creditCards}
         isOpen={isDetailsOpen}
         onDismiss={closeDetails}
-      />
+      /> */}
     </>
   );
 };

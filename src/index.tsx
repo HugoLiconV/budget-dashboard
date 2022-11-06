@@ -1,20 +1,32 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import Auth0ProviderWithHistory from "auth/auth0-provider-with-history";
+// import Auth0ProviderWithHistory from "auth/auth0-provider-with-history";
 
 import "./index.css";
 import App from "./App";
 
 import reportWebVitals from "./reportWebVitals";
+import { QueryClient, QueryClientProvider } from "react-query";
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+// import { MantineProvider } from "@mantine/core";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Auth0ProviderWithHistory>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        {/* <Auth0ProviderWithHistory> */}
         <App />
-      </Auth0ProviderWithHistory>
-    </Router>
+        {/* </Auth0ProviderWithHistory> */}
+      </Router>
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

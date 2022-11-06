@@ -1,24 +1,52 @@
 import styled from "styled-components";
 import CreditCardsList from "./credit-cards-list";
-import { getDashboard, DashboardResponse } from "./services/dashboard";
-import Loader from "./icons/loader";
+import { getDashboard, DashboardResponse } from "../services/dashboard";
 import { formatCurrency } from "../utils/currency";
 import { useQuery } from "../hooks/useQuery";
-import { CardsResponse, getCards } from "./services/cards";
+import { CardsResponse, getCards } from "../services/accounts";
 import BlurredText from "./blurred-text";
+import Button from "atomic/button";
 
 const Card = styled.div``;
 
 export default function Account() {
-  const { status: dashboardDataStatus, data: dashboardData } =
-    useQuery<DashboardResponse>(getDashboard);
+  const {
+    status: dashboardDataStatus,
+    data: dashboardData,
+    refetch: refetchDashboard,
+  } = useQuery<DashboardResponse>(getDashboard);
 
-  const { data: cards } = useQuery<CardsResponse[]>(getCards);
+  const {
+    data: cards,
+    status: cardStatus,
+    refetch: refetchAccounts,
+  } = useQuery<CardsResponse[]>(getCards);
+
   const cardClassName =
     "bg-gray-800 flex flex-col py-4 px-2 rounded-2xl via-pink-500 to-red-500";
   const mainCardClassName =
     cardClassName + " col-start-1 col-end-3 row-start-1 row-end-2";
 
+  if ([dashboardDataStatus, cardStatus].includes("error")) {
+    return (
+      <div className="p-4 bg-red-500 mx-4 rounded-2xl	text-center">
+        <h2>Error obteniendo datos 😥</h2>
+        <Button
+          className="mt-2 py-2"
+          onClick={() => {
+            if (cardStatus === "error") {
+              refetchAccounts();
+            }
+            if (dashboardDataStatus === "error") {
+              refetchDashboard();
+            }
+          }}
+        >
+          Volver a intentar
+        </Button>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col">
       <CreditCardsList creditCards={cards || []} />

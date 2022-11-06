@@ -1,24 +1,36 @@
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface UseQueryReturningValues<T> {
   status: "loading" | "error" | "iddle";
   data: T | undefined;
+  refetch: () => void;
 }
 
-export function useQuery<T>(fn: () => Promise<T>): UseQueryReturningValues<T> {
+export function useQuery<T>(
+  fn: (token: string) => Promise<T>
+): UseQueryReturningValues<T> {
+  const { getAccessTokenSilently } = useAuth0();
   const [data, setData] = React.useState<T>();
   const [status, setStatus] =
     React.useState<"loading" | "error" | "iddle">("loading");
 
-  React.useEffect(() => {
+  const fetch = React.useCallback(async () => {
     setStatus("loading");
-    fn()
+    getAccessTokenSilently()
+      .then(fn)
       .then((data) => {
         setStatus("iddle");
         setData(data);
       })
-      .catch(() => setStatus("error"));
-  }, [fn]);
+      .catch((e) => {
+        setStatus("error");
+      });
+  }, [fn, getAccessTokenSilently]);
 
-  return { data, status };
+  React.useEffect(() => {
+    fetch();
+  }, [fetch]);
+
+  return { data, status, refetch: fetch };
 }

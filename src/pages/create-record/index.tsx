@@ -68,6 +68,7 @@ export const OutlineButton = styled(Button)`
 
 const CreateRecord = () => {
   const recordValues = useRecordForm();
+  const formRef = React.useRef<HTMLFormElement>(null);
   const {
     date,
     amount,
@@ -84,12 +85,18 @@ const CreateRecord = () => {
     useMutation(createRecord, {
       onSuccess: () => {
         clearForm();
+        if (formRef.current) {
+          formRef.current.reset();
+        }
       },
     });
   const { isLoading: isCreateTransferLoading, mutateAsync: postTransfer } =
     useMutation(createTransfer, {
       onSuccess: () => {
         clearForm();
+        if (formRef.current) {
+          formRef.current.reset();
+        }
       },
     });
 
@@ -192,7 +199,7 @@ const CreateRecord = () => {
   };
 
   return (
-    <StyledCreateRecord onSubmit={onSubmit}>
+    <StyledCreateRecord onSubmit={onSubmit} ref={formRef}>
       <RecordFormContext.Provider value={recordValues}>
         <Card className="mb-4">
           <RecordTypeTab selectedTab={recordType} onTabClick={setRecordType} />

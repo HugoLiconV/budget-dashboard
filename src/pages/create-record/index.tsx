@@ -16,6 +16,7 @@ import TransferForm from "./transfer-form";
 import ExpenseIncomeForm from "./expense-income-form";
 import useRecordForm from "./hook/useRecordForm";
 import { RecordFormContext } from "./context/recod-form-context";
+import toast, { Toaster } from "react-hot-toast";
 
 const StyledCreateRecord = styled.form`
   padding: 24px;
@@ -79,22 +80,20 @@ const CreateRecord = () => {
     clearForm,
   } = recordValues;
 
-  const { isLoading, mutate: postRecord } = useMutation(createRecord, {
-    onSuccess: () => {
-      clearForm();
-    },
-    onError: (error) => {
-      alert(error);
-    },
-  });
-  const { mutate: postTransfer } = useMutation(createTransfer, {
-    onSuccess: () => {
-      clearForm();
-    },
-    onError: (error) => {
-      alert(error);
-    },
-  });
+  const { isLoading: isCreateRecordLoading, mutateAsync: postRecord } =
+    useMutation(createRecord, {
+      onSuccess: () => {
+        clearForm();
+      },
+    });
+  const { isLoading: isCreateTransferLoading, mutateAsync: postTransfer } =
+    useMutation(createTransfer, {
+      onSuccess: () => {
+        clearForm();
+      },
+    });
+
+  const isLoading = isCreateRecordLoading || isCreateTransferLoading;
 
   const [recordType, setRecordType] = React.useState<RecordType>(
     RecordType.Expense
@@ -153,7 +152,17 @@ const CreateRecord = () => {
         date,
         label,
       };
-      postTransfer({ transfer });
+      toast.promise(
+        postTransfer({ transfer }),
+        {
+          loading: "Creating transfer...",
+          success: "Transfer created",
+          error: (err) => `Error: ${err.message}`,
+        },
+        {
+          position: "bottom-center",
+        }
+      );
     } else {
       const record = {
         name,
@@ -164,7 +173,17 @@ const CreateRecord = () => {
         account,
         date,
       };
-      postRecord({ record });
+      toast.promise(
+        postRecord({ record }),
+        {
+          loading: "Creating record...",
+          success: "Record created",
+          error: (err) => `Error: ${err.message}`,
+        },
+        {
+          position: "bottom-center",
+        }
+      );
     }
   };
 
@@ -234,6 +253,7 @@ const CreateRecord = () => {
           </Button>
         </Card>
       </RecordFormContext.Provider>
+      <Toaster />
     </StyledCreateRecord>
   );
 };

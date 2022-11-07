@@ -184,7 +184,6 @@ const CreateRecord = () => {
             id="amount"
             name="amount"
             placeholder="$0.00"
-            type="number"
             ref={amountInputRef}
             step="any"
             inputMode="decimal"

@@ -308,6 +308,10 @@ export const accounts: Option[] = [
     name: "Banamex Priority",
     value: "Banamex Priority",
   },
+  {
+    name: "Hey Banco Crédito",
+    value: "Hey Banco Crédito",
+  },
 ];
 
 export const categoryIcon: Record<CategoryOption, Icons> = {

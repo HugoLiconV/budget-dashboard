@@ -154,7 +154,7 @@ export default function Select({
             </div>
           )}
         </Reference>
-        <Popper placement="bottom-start" modifiers={modifiers}>
+        <Popper placement="auto" modifiers={modifiers}>
           {({ ref, style }) => (
             <div ref={ref} style={{ ...style, zIndex: 2 }}>
               <DropdownList {...getMenuProps()} isOpen={isOpen}>

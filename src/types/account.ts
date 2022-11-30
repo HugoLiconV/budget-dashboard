@@ -8,6 +8,8 @@ export enum AccountEnum {
   banamex_costco = "Banamex Costco",
   banorte_oro = "Banorte Oro",
   hsbc_2Now = "HSBC 2Now",
+  banamex_priority = "Banamex Priority",
+  hey_banco_credito = "Hey Banco Crédito",
   total = "Total",
 }
 

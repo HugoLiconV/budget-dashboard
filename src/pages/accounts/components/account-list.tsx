@@ -51,6 +51,14 @@ const AccountIconMap: Record<AccountEnum, { icon: Icons; color: string }> = {
     icon: "credit_card",
     color: "#8B5CF6",
   },
+  [AccountEnum.banamex_priority]: {
+    icon: "credit_card",
+    color: "#6B7280",
+  },
+  [AccountEnum.hey_banco_credito]: {
+    icon: "credit_card",
+    color: "#6B7280",
+  },
   [AccountEnum.total]: {
     icon: "monetization_on",
     color: "",
@@ -67,10 +75,10 @@ const AccountList: React.FC<AccountListProps> = ({
     <>
       {accounts?.map((account) => (
         <StyledAccountItem
-          color={AccountIconMap[account.name]?.color}
+          color={AccountIconMap[account.name]?.color ?? ""}
           name={account.name}
           amount={account.balance}
-          iconName={AccountIconMap[account.name]?.icon}
+          iconName={AccountIconMap[account.name]?.icon ?? "credit_card"}
           key={account.name}
         />
       ))}

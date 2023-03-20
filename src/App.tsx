@@ -6,6 +6,7 @@ import CreateRecord from "pages/create-record";
 import BottomBar from "components/bottom-bar";
 import { Route } from "react-router-dom";
 import { useAccountsQuery } from "hooks";
+import "./App.css";
 
 const AuthenticatedApp = () => {
   useAccountsQuery();

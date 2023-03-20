@@ -2,9 +2,9 @@ import React from "react";
 import { useSelect, UseSelectStateChange } from "downshift";
 import styled from "styled-components";
 import { MdClear } from "react-icons/md";
-import { Manager, Popper, Reference } from "react-popper";
-import { Modifier } from "@popperjs/core";
+import { Manager, Reference } from "react-popper";
 import { Option } from "pages/create-record/constants";
+import BotomSheet from "atomic/bottom-sheet";
 
 const StyledSelect = styled.div`
   .toggle-container {
@@ -23,7 +23,6 @@ const ToggleButton = styled.button`
   background: transparent;
   width: 100%;
   border: none;
-  /* outline: none; */
   cursor: pointer;
   text-align: left;
   font-size: 16px;
@@ -39,7 +38,6 @@ const IconButton = styled.button`
   font-size: 16px;
   border: none;
   background: transparent;
-  /* outline: none; */
   padding: 2px;
   display: inline-flex;
   border-radius: 50px;
@@ -55,10 +53,10 @@ const DropdownList = styled.ul<{ isOpen: boolean }>`
   background: #fff;
   list-style: none;
   text-align: left;
-  padding: 16px;
+  padding: 0;
   border-radius: 10px;
   li {
-    padding: 8px;
+    padding: 16px;
     cursor: pointer;
   }
 `;
@@ -98,6 +96,7 @@ export default function Select({
     highlightedIndex,
     getItemProps,
     reset,
+    closeMenu,
   } = useSelect<Option>({
     items: options,
     onSelectedItemChange: handleSelectedItemChange,
@@ -110,20 +109,20 @@ export default function Select({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedItem]);
 
-  const modifiers: Modifier<string, object>[] = React.useMemo(
-    () => [
-      {
-        name: "sameWidth",
-        enabled: true,
-        fn: ({ state }) => {
-          state.styles.popper.width = `${state.rects.reference.width}px`;
-        },
-        phase: "beforeWrite",
-        requires: ["computeStyles"],
-      },
-    ],
-    []
-  );
+  // const modifiers: Modifier<string, object>[] = React.useMemo(
+  //   () => [
+  //     {
+  //       name: "sameWidth",
+  //       enabled: true,
+  //       fn: ({ state }) => {
+  //         state.styles.popper.width = `${state.rects.reference.width}px`;
+  //       },
+  //       phase: "beforeWrite",
+  //       requires: ["computeStyles"],
+  //     },
+  //   ],
+  //   []
+  // );
   return (
     <StyledSelect>
       <Manager>
@@ -154,7 +153,28 @@ export default function Select({
             </div>
           )}
         </Reference>
-        <Popper placement="auto" modifiers={modifiers}>
+        <BotomSheet
+          isOpen={isOpen}
+          onDismiss={closeMenu}
+          header={<h1>{label}</h1>}
+        >
+          <DropdownList {...getMenuProps()} isOpen={isOpen}>
+            {options.map((category, index) => (
+              <li
+                style={
+                  highlightedIndex === index
+                    ? { backgroundColor: "#bde4ff" }
+                    : {}
+                }
+                key={`${category.value}${index}`}
+                {...getItemProps({ item: category, index })}
+              >
+                {category.name}
+              </li>
+            ))}
+          </DropdownList>
+        </BotomSheet>
+        {/* <Popper placement="bottom" modifiers={modifiers}>
           {({ ref, style }) => (
             <div ref={ref} style={{ ...style, zIndex: 2 }}>
               <DropdownList {...getMenuProps()} isOpen={isOpen}>
@@ -174,7 +194,7 @@ export default function Select({
               </DropdownList>
             </div>
           )}
-        </Popper>
+        </Popper> */}
       </Manager>
     </StyledSelect>
   );

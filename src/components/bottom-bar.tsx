@@ -46,9 +46,9 @@ const BottomBar: React.FC<BottomBarProps> = () => {
         <StyledLink to="/" exact>
           <StyledIcon name="home" />
         </StyledLink>
-        <StyledLink to="monthly-expenses">
+        {/* <StyledLink to="monthly-expenses">
           <StyledIcon name="show_chart" />
-        </StyledLink>
+        </StyledLink> */}
         <StyledLink to="/create-record">
           <StyledIcon name="add_box" />
         </StyledLink>

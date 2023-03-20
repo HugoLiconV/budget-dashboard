@@ -200,6 +200,10 @@ export const categories: Category[] = [
         value: "Prestamos, intereses",
       },
       {
+        name: "Cargos, tasas",
+        value: "Cargos, tasas",
+      },
+      {
         name: "Seguros",
         value: "Seguros",
       },
@@ -238,6 +242,20 @@ export const categories: Category[] = [
     ],
   },
   {
+    name: "Otros",
+    value: "Otros",
+    subcategories: [
+      {
+        name: "Faltante",
+        value: "Faltante",
+      },
+      {
+        name: "Propinas",
+        value: "Propinas",
+      },
+    ],
+  },
+  {
     name: "Ingresos",
     value: "Ingresos",
     subcategories: [
@@ -256,6 +274,10 @@ export const categories: Category[] = [
       {
         name: "Prestamos, intereses",
         value: "Prestamos, intereses",
+      },
+      {
+        name: "Intereses, dividendos",
+        value: "Intereses, dividendos",
       },
     ],
   },

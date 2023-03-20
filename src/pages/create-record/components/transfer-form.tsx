@@ -1,7 +1,9 @@
 import Select from "atomic/select";
+import { useAccountsQuery } from "hooks";
 import React from "react";
-import { Option, accounts } from "./constants";
-import { useRecordFormContext } from "./context/recod-form-context";
+import { Option } from "../constants";
+import { useRecordFormContext } from "../context/recod-form-context";
+import { accountToOption } from "../utils/accounts";
 
 export type TransferRecordFormValue = {
   name: string;
@@ -15,6 +17,11 @@ const TransferForm: React.FC = () => {
   // :: Form State
   const { setFromAccount, fromAccount, setToAccount, toAccount } =
     useRecordFormContext();
+  const { data } = useAccountsQuery();
+
+  const accounts = data
+    ? data.filter((account) => account.name !== "Total").map(accountToOption)
+    : [];
 
   return (
     <>

@@ -6,6 +6,7 @@ import {
   CategoryOption,
   createRecord,
   createTransfer,
+  Record,
   Transfer,
 } from "services/records";
 import { useMutation } from "react-query";
@@ -74,9 +75,14 @@ const CreateRecord = () => {
     label,
     name,
     setDate,
+    category,
+    subcategory,
     setAmount,
     setLabel,
     setName,
+    toAccount,
+    fromAccount,
+    account,
     clearForm,
   } = recordValues;
 
@@ -137,26 +143,14 @@ const CreateRecord = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    const amount = formData.get("amount") as string;
-    const name = formData.get("name") as string;
-    const category = formData.get("category") as string;
-    const subcategory = formData.get("subcategory") as string;
-    const account = formData.get("account") as string;
-    const label = formData.get("label") as string;
-    const date = formData.get("date") as string;
-    const fromAccount = formData.get("fromAccount") as string;
-    const toAccount = formData.get("toAccount") as string;
-
     if (recordType === RecordType.Transfer) {
       const transfer: Transfer = {
         name,
         amount: parseFloat(amount) || 0,
-        fromAccount: fromAccount,
-        toAccount: toAccount,
+        fromAccount: fromAccount?.value as string,
+        toAccount: toAccount?.value as string,
         date,
-        label,
+        label: label?.value,
       };
       toast.promise(
         postTransfer({ transfer }),
@@ -170,13 +164,13 @@ const CreateRecord = () => {
         }
       );
     } else {
-      const record = {
-        name,
+      const record: Record = {
+        name: name,
         amount: parseFloat(amount) || 0,
-        category: category as CategoryOption,
-        subcategory,
-        label,
-        account,
+        category: category?.value as CategoryOption,
+        subcategory: subcategory?.value as string,
+        label: label?.value,
+        account: account?.value as string,
         date,
       };
       toast.promise(

@@ -45,7 +45,9 @@ function ExpenseIncomeForm({ type }: Props) {
     <>
       {type === RecordType.Expense && (
         <Select
-          options={categories}
+          options={categories.filter(
+            (category) => category.value !== "Ingresos"
+          )}
           placeholder="Food"
           label="Category"
           name="category"
